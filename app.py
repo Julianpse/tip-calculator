@@ -1,6 +1,7 @@
 import tornado.ioloop
 import tornado.web
 import tornado.log
+from calculator import *
 
 from jinja2 import \
 Environment, PackageLoader, select_autoescape
@@ -21,14 +22,14 @@ class MainHandler(TemplateHandler):
     self.set_header(
       'Cache-Control',
       'no-store, no-cache, must-revalidate, max-age=0')
-    self.render_template("base.html", {})
+    self.render_template("calculator.html", {})
     
   def post(self):
-      total = self.get_body_argument('total')
-      service = self.get_body_argument('service')
-      split = self.get_body_argument('split')
+      total_input = self.get_body_argument('total')
+      service_input = self.get_body_argument('service')
+      split_input = self.get_body_argument('split')
       
-      if total and service and split:
+      if total_input and service_input and split_input:
           tip_calculator()
 
 class ResultsHandler(TemplateHandler):
@@ -37,39 +38,6 @@ class ResultsHandler(TemplateHandler):
       'Cache-Control',
       'no-store, no-cache, must-revalidate, max-age=0')
     self.render_template("results.html", {})
-
-
-def tip_calculator():
-    tip_levels = {"good" : .20, "fair" : .15, "bad" : .1}
-    tip = 0.0
-    total = 0.0
-    total_rounded_cents = 0.0
-    splitting = 0
-    
-    bill = float(input("Enter Total Bill Amount: "))
-    level = input("Enter level of service(good, fair or bad): ")
-    
-
-    for levels, percent_tip in tip_levels.items():
-        if level == levels: 
-            tip = bill * percent_tip
-            total = tip + bill
-            
-            #Rounds to 2 decimal places for cents
-            total_rounded_tip = float("{0:.2f}".format(tip))
-            total_rounded_cents = float("{0:.2f}".format(total))
-            
-            
-            print("Tip amount: ${} \nTotal Bill: ${}".format(total_rounded_tip,total_rounded_cents))
-            
-    split = input("Are you splitting the bill today (yes/no)?: ").upper()
-            
-    if split == "YES":
-        splitting = int(input("How many ways?: "))
-        print("Each of you will pay: ${}".format(total_rounded_cents / splitting))
-        
-            
-tip_calculator() 
 
 
 def make_app():
@@ -87,6 +55,6 @@ if __name__ == "__main__":
   tornado.log.enable_pretty_logging()
   
   app = make_app()
-  PORT = int(os.environ.get('PORT', '8888'))
+  PORT = int('8888')
   app.listen(PORT)
   tornado.ioloop.IOLoop.current().start()
