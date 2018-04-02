@@ -30,7 +30,12 @@ class MainHandler(TemplateHandler):
       split_input = self.get_body_argument('split')
       
       if total_input and service_input and split_input:
-          tip_calculator()
+        self.redirect("/results")
+        tip_calculator(total_input,service_input,split_input)
+        print("tip calculator works")
+      
+      else:
+        error = "FILL OUT THE FORM"
 
 class ResultsHandler(TemplateHandler):
   def get(self):
