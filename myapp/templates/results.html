@@ -1,5 +1,9 @@
 {% extends "base.html" %}
-<h3>Total Bill: {{ total }}</h3>
-<h3>Tip Amount: {{ tip }}</h3>
-<h3>Split {{ split }} ways</h3>
-<h3>You each will pay {{ split_price }}</h3>
+{% block content %}
+<div class = "container">
+    <h3>Total Bill: {{total}}</h3>
+    <h3>Tip Amount: {{tip}}</h3>
+    <h3>Split {{split}} ways</h3>
+    <h3>You each will pay {{split_price}}</h3>
+</div>
+{% endblock %}
