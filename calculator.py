@@ -7,9 +7,6 @@ def tip_calculator(total_input, service_input, split_input):
         "Fair" : .15, 
         "Poor" : .1
     }
-    
-    tip = 0.0
-    total = 0.0
 
     bill =  float(total_input)
     level = service_input
