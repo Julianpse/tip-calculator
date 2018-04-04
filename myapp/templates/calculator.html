@@ -7,11 +7,21 @@
               <br>
               Level of Service:<br>
               <input list="service" name ="service">
-              <datalist id ="service" data-toggle="dropdown" class="dropdown-toggle" role="button">
-                  <option value = "Good">
-                  <option value = "Fair">
-                  <option value = "Poor">
-              </datalist>
+                <label class="custom-control custom-radio">
+                  <input id="radio1" name="radio" type="radio" class="custom-control-input" value ="Good">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description"Good</span>
+                </label>
+                <label class="custom-control custom-radio">
+                  <input id="radio2" name="radio" type="radio" class="custom-control-input" value = "Fair">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Fair</span>
+                </label>
+                <label class="custom-control custom-radio">
+                  <input id="radio2" name="radio" type="radio" class="custom-control-input" value = "Poor">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Poor</span>
+                </label>
               <br><br>
               How many ways will the bill be split?<br>
               <input list="split" name ="split">
@@ -28,3 +38,5 @@
             </form>
         </div>
 {% endblock %}
+
+
