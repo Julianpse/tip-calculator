@@ -27,6 +27,6 @@ def tip_calculator(total_input, service_input, split_input):
             
             print("Tip amount: ${} \nTotal Bill: ${}\n Split {} way(s): {}".format(tip, total, split, split_price))
             
-            
+            return tip, total, split, split_price
         
         
